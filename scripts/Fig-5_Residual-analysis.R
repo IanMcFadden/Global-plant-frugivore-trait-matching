@@ -177,4 +177,11 @@ ggplot(trait_points_max_3spp, aes(x=x, y=y)) +
 dev.off()
 
 
+# Determine the average residual value of tropical forest-dominated realms
+# (Afrotropical, Indotropical, Neotropical etc.)
+head(trait_points_max_3spp)
+realm_ave_resids <- with(trait_points_max_3spp, tapply(lm_resids_realmAve, wallace_realm, unique)) 
+mean(realm_ave_resids[names(realm_ave_resids) %in% c("Afrotropical", "Indotropical", "Neotropical")])
+
+
 ## End of script

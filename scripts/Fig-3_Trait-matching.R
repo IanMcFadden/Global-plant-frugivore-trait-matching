@@ -11,7 +11,7 @@
 # Setup 
 rm(list=ls())
 library(viridis); library(patchwork); library(tidyverse); library(rgeos)
-library(sp); library(raster); library(scales); library(colorspace)
+library(sp); library(raster); library(scales); library(colorspace); library(lmodel2)
 load("data/all-data-SPDF-list_3spp-bc_ELE-R2.Rdata")
 
 # Load in the Robinson projection map objects
@@ -208,6 +208,17 @@ gs_fs_reg_3spp_richResid <- ggplot(data=gs_fs_max_rich_resid_df, aes(x=fruit_siz
 pdf("tables_and_figures/Fig_3B_and_C.pdf", 8.5, 3.5)
 gs_fs_reg_3spp + gs_fs_reg_3spp_richResid
 dev.off()
+
+# Model 2 regression to determine if the slopes of regressions in Figure 3C&B are less than 1
+# For Figure 3B, non-residual values 
+head(trait_points_max_3spp)
+model2_reg <- lmodel2(formula=log(Average.Gape.Width/10) ~ AverageFruitSize_cm_w_allo_log, data=trait_points_max_3spp, nperm=999)
+model2_reg # Slope is less than 1 and the confidences intervals for the slope do not overlap 1 
+
+# For Figure 3C, residual values
+head(gs_fs_max_rich_resid_df)
+model2_resid <- lmodel2(formula=gape_size_rich_resids_log ~ fruit_size_rich_resids_log, data=gs_fs_max_rich_resid_df, nperm=999)
+model2_resid # Slope is less than 1 and the confidences intervals for the slope do not overlap 1 
 
 
 ## End of script

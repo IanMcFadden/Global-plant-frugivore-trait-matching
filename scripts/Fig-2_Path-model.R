@@ -61,8 +61,8 @@ SEM_mod_list <- lapply(trait_clim_spdf_list[c("maximum", "median")], prep_n_fit_
 SEM_summary_list <- lapply(SEM_mod_list, summary)
 
 # Name the summaries
-SEM_summary_list[["maximum"]]$name <- "Maximum"
-SEM_summary_list[["median"]]$name <- "Median"
+SEM_summary_list[["maximum"]]$name <- "maximum"
+SEM_summary_list[["median"]]$name <- "median"
 
 # Print the results
 SEM_summary_list[["maximum"]] # Used as input for image editor make Fig. 2 and Table S1

@@ -1,0 +1,7 @@
+load("/Users/imcfadden/Google_Drive/Post_PhD/Lighthouse_Postdoc_WSL_ETH/Projects/Macro_Vert_Plant_Associations/Writing/ELE_Revision_2/Global-plant-frugivore-trait-matching/data/all-data-SPDF-list_all-spp_ELE-R2.Rdata")
+ls()
+lapply(trait_clim_spdf_list, head)
+library(raster)
+lapply(trait_clim_spdf_list, head)
+lapply(trait_clim_spdf_list, head)
+lapply(trait_clim_spdf_list, dim)
