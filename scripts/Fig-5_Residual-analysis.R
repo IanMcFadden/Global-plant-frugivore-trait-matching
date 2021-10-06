@@ -2,7 +2,7 @@
 ## Code to reproduce Fig. 5 of:
 ##
 ##  McFadden et al. Global plant-frugivore trait matching is shaped by
-##  climate and biogeographic history. Ecology Letters (in revision).
+##  climate and biogeographic history. Ecology Letters (in press).
 
 ## Note: An image editor was used to create the final composite figure
 ## from the Fig. 5A, 5B and 5C PDF outputs from this script 
