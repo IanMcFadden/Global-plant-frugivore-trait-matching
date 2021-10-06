@@ -23,9 +23,9 @@ load("data/bc_shapeFiles_wherePalms_simplified.Rdata")
 
 # Make Wallace realm color dataframe
 realm <- c("Neotropical", "Nearctic", "Indotropical", "Afrotropical", "Panamanian",
-           "Oceanina", "Sino-Japanese", "Madagascan", "Australian", "Saharo-Arabian")
-hex_color <- c("#4A79B1", "#77C2DF", "#F4D432", "#649F4F", "#759bd9", "#724B9B",
-               "#BDD790", "#682D1F", "#BE3F91", "#7EB854")
+           "Oceanian", "Sino-Japanese", "Madagascan", "Australian", "Saharo-Arabian")
+hex_color <- c("#4A79B1", "#77C2DF", "#F4D432", "#649F4F", "#759bd9",
+               "#724B9B", "#BDD790", "#682D1F", "#BE3F91", "#7EB854")
 wallace_realm_cols_df <- data.frame(realm=realm, hex_color=hex_color)
 
 # Make shape ID dataframe and add ID to spatial polygons dataframe
@@ -115,11 +115,13 @@ cor_3spp <- cor.test(log(trait_points_max_3spp$Average.Gape.Width/10),
 r_val_3spp <- as.numeric(round(cor_3spp$estimate, 2))
 cor_3spp$p.value # p is < 0.001, so using ***
 
-
 # Reorder wallace_realm_cols_df to match trait_points_max and create color vector
 wallace_realm_cols_df_3spp <- wallace_realm_cols_df[order(unique(trait_points_max_3spp$wallace_realm)),]
 wallace_realm_cols_vec_3spp <- wallace_realm_cols_df_3spp$hex_color
 names(wallace_realm_cols_vec_3spp) <- wallace_realm_cols_df_3spp$realm
+
+# Lighten the color vector for plotting 
+wallace_realm_cols_vec_3spp <- lighten(wallace_realm_cols_vec_3spp, 0.25) 
 
 # Plot gape and fruit size regression (Fig. 3B)
 gs_fs_reg_3spp <- ggplot(data=trait_points_max_3spp,
@@ -129,7 +131,7 @@ gs_fs_reg_3spp <- ggplot(data=trait_points_max_3spp,
   
                  geom_abline(aes(intercept=0, slope=1), size=0.5, color="darkgrey", linetype="dashed") + 
                  geom_point(pch=21, size=2) +
-                 scale_fill_manual(name="", values=c(lapply(as.list(wallace_realm_cols_vec_3spp), lighten, 0.25))) + 
+                 scale_fill_manual(name="", values=wallace_realm_cols_vec_3spp) + 
                  geom_smooth(method="lm", se=T, col="black", fill="grey70", lwd=0.9) +
                  theme_classic() +
                  theme(legend.position="none") +
@@ -187,7 +189,7 @@ gs_fs_reg_3spp_richResid <- ggplot(data=gs_fs_max_rich_resid_df, aes(x=fruit_siz
   
                  geom_abline(aes(intercept=0, slope=1), size=0.5, color="darkgrey", linetype="dashed") + 
                  geom_point(pch=21, size=2) +
-                 scale_fill_manual(name="", values=c(lapply(as.list(wallace_realm_cols_vec_3spp), lighten, 0.25))) + 
+                 scale_fill_manual(name="", values=wallace_realm_cols_vec_3spp) + 
                  geom_smooth(method="lm", se=T, col="black", fill="grey70", lwd=0.9) +
                  theme_classic() +
                  theme(legend.position = "none") +
