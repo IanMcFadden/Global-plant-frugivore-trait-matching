@@ -4,7 +4,9 @@
 
 **Code to reproduce the main results from:**
 
-McFadden et al. Global plant-frugivore trait matching is shaped by climate and biogeographic history. Ecology Letters (in press).
+McFadden, I.R., Fritz, S.A., Zimmermann, N.E., Pellissier, L., Daniel Kissling, W., Tobias, J.A., et al. (2022). Global plant‐frugivore trait matching is shaped by climate and biogeographic history. Ecology Letters, 22, 686-696
+https://doi.org/10.1111/ele.13890
+
 
 <br/>
  
